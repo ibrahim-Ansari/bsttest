@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myBuyingList">
+<head>
+<title>Buy a New home</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript" src="http://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.min.js"></script>
+  <link rel="stylesheet" href="./MyStyles.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+</head>
+<body id="myBuyPage"  ng-controller="myCtrl">
+
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">
+      <img class="logo1" src="./images/Logo.jpg"
+      	 alt="Logo" >
+      	 <span class="logo-small">BST PROPERTIES INC </span>
+      </a>      
+    </div>    
+    <div class="collapse navbar-collapse" id="myNavbar">  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">ABOUT</a></li>   
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- <p>City to search</p> <p><input type="text" ng-model="test"></p>
+<p>zip to search</p> <p><input type="text" ng-model="testz"></p>
+<button ng-click= "filters.city=test,testz"> Search</button>-->
+
+<div>
+
+</div>
+<div class="table table-sm"> 
+<table id="myTable">
+<thead>
+ <tr>
+        <th>Address</th>
+        <th>City</th>
+        <th>County</th>
+        <th>State</th>  
+        <th>Zip Code</th>                  
+ </tr>
+ </thead>
+ <tbody> </tbody>
+  <!-- <tr ng-repeat="x in addrs ">
+    <td >{{ x.addr }}</td>
+    <td>{{ x.city }}</td>
+    <td>{{ x.county }}</td>
+    <td>{{ x.zip }}</td>
+  </tr> -->
+</table>
+</div>
+<div class="gridStyle" ng-grid="gridOptions" ng-repeat="x in myData">
+        </div>
+<script >
+var app = angular.module("myBuyingList", ['ngTable']); 
+app.controller("myCtrl", function($scope,$filter,ngTableParams) {
+	
+     $scope.addrs = [  {addr:"Washington Road",city:"Atlanta",county:"Atlanta",zip:"1122"},
+                       {addr:"Headland Drive",city:"Atlanta",county:"East Point",zip:"1123"},
+                       {addr:"River Valley Road",city:"Sandy Springs",county:"Sandy Springs",zip:"1129"},
+                       {addr:"Roswell St",city:"Marietta",county:"Marietta",zip:"1127"},
+                       {addr:"Westside parkway",city:"Alphaertta",county:"Alphaertta",zip:"1129"}
+                       ];
+     /*  $scope.addrsTable = new ngTableParams({ page: 1,
+        									count: 10},
+        									{
+        						                total: $scope.addrs.length, 
+        						                getData: function ($defer, params) {
+        						                    $scope.data = $scope.addrs.slice((params.page() - 1) * params.count(), params.page() * params.count());
+        						                    $defer.resolve($scope.data);}
+        						                });        */     
+      
+});
+
+var dataSet = [
+               ["Washington Road","Atlanta","Atlanta","GA","1122"],
+                       ["Headland Drive","Atlanta","East Point","GA","1123"],
+                       ["River Valley Road","Sandy Springs","Sandy Springs","GA","1129"],
+                       ["Roswell St","Marietta","Marietta","GA","1127"],
+                       ["Westside parkway","Alphaertta","Alphaertta","GA","1129"],
+              
+           ];
+           
+$( document ).ready(function() {
+	$('#myTable').DataTable( {
+        data: dataSet,
+        columns: [
+            { title: "Address" },
+            { title: "City" },
+            { title: "County" },
+            { title: "State" },
+            { title: "Zip Code" }
+        ]
+    } );
+});
+
+
+	
+</script>
+</body>
+</html>

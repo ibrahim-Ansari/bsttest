@@ -1,0 +1,890 @@
+<html lang="en" ng-app="myBuyingList">
+<head>
+<title>Buy a New home</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <link rel="stylesheet" href="./MyStyles.css">
+  </head>
+  <body>
+  <div  ng-app="myBuyingList" ng-controller="myCtrl">
+<nav class="navbar navbar-default ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">
+      <img class="logo1" src="./images/Logo.jpg"
+      	 alt="Logo" >
+      	 <span class="logo-small">BST PROPERTIES INC </span>
+      </a>      
+    </div>    
+    <div class="collapse navbar-collapse" id="myNavbar">  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">ABOUT</a></li>   
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<div id="location-criteria">
+ <div id="mapsearch-criteria-basicsearch" class="searchtab active"><div class="row-fluid r-collapsable r-location-row">
+                <div class="span4 max-width-799-span12  max-width-799-no-margin r-location-span">
+                    <div id="criteria-location">
+                        <div class=""><div class="muted">Location</div>
+                            <input type="text" class="r-location-box input-block-level location ac_input" id="criteria-location-input" name="Criteria/LocationBox" placeholder="Enter City, State, Zip, Address or MLS #" locationtype="city,zip code,county,subdivision,school district,mls #,address" autocomplete="off">
+                        </div>
+                    </div>
+                    <div id="r-location-summary-dropdown" class="dropdown"><button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-original-title="View multiple locations, nearby areas &amp; radius search"><i class="r-location-menu-toggle"></i>
+                        </button>
+                        <div class="dropdown-menu pull-right"><div class="modal-header">
+                                <div class="r-modal-header-table"><ul><li class="r-item-cell btn-enable-all-locations"><input type="checkbox" class="btn-select-all-locations"></li>
+                                        <li class="r-item-cell modal-header-title">Your Locations</li>    
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="search-summary-items"><ul><li class="disabled-criteria"><div class="r-item-cell r-item-cell-enable-toggle"><input type="checkbox" class="r-criteria-enabled" data-location-criteria-all="%7B%22text%22%3A%2266111%20%28Zip%20Code%29%22%2C%22name%22%3A%22Criteria/Location%22%2C%22value%22%3A%2266111%20%28Zip%20Code%29%22%2C%22type%22%3A%22Zip%20Code%22%2C%22data%22%3A%2266111%22%2C%22dataLocation%22%3A0%2C%22isNot%22%3Afalse%2C%22isAnd%22%3Afalse%2C%22isOr%22%3Atrue%2C%22enabled%22%3Afalse%7D" data-location-criteria-location-value="undefined" fieldname="Criteria/Location" fieldval="66111%20%28Zip%20Code%29" fieldtext="66111%20%28Zip%20Code%29"></div><div class="r-item-cell r-item-cell-label">66111 (Zip Code)</div><div class="r-item-cell r-item-cell-nearby"><a href="#NearbyAreasPopup" title="Click on this location to see more choices." role="button" class="criteria-location-nearbyareasbutton" data-toggle="modal" onclick="Search.OpenNearbyAreas('66111 (Zip Code)', 'Zip Code', '66111');">Nearby</a></div><div class="r-item-cell r-item-cell-remove-button"><div title="Remove 66111 (Zip Code)" class="remove-criteria icon-remove" data-location-criteria-all="%7B%22text%22%3A%2266111%20%28Zip%20Code%29%22%2C%22name%22%3A%22Criteria/Location%22%2C%22value%22%3A%2266111%20%28Zip%20Code%29%22%2C%22type%22%3A%22Zip%20Code%22%2C%22data%22%3A%2266111%22%2C%22dataLocation%22%3A0%2C%22isNot%22%3Afalse%2C%22isAnd%22%3Afalse%2C%22isOr%22%3Atrue%2C%22enabled%22%3Afalse%7D" data-location-criteria-location-value="undefined" fieldname="Criteria/Location" fieldval="66111%20%28Zip%20Code%29" fieldtext="66111%20%28Zip%20Code%29"></div></div></li></ul></div>
+							<div class="modal-footer"><div class="row-fluid"><div class="span4 text-left"><button type="button" class="btn btn-link btn-clear-all-locations">Clear All</button></div>
+                                    <div class="span4 text-center"><button type="button" class="btn btn-link">Close</button></div>
+                                    <div class="span4 text-right"><button type="button" class="btn btn-link btn-delete-all-locations">Delete All</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3 max-width-799-span4 max-width-799-no-margin">
+                    <div class="row-fluid"><div class="span5">
+                            <div class="muted">Price min</div>
+                            <input type="text" class="money input-block-level ac_input" id="mapsearch-criteria-minprice" name="Criteria/MinPrice" value="" autocomplete="off">
+                        </div>
+                        <div class="span2 r-spacer">To</div>
+                        <div class="span5"><div class="muted">Price max</div>
+                            <input type="text" class="money input-block-level ac_input" id="mapsearch-criteria-maxprice" name="Criteria/MaxPrice" value="" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="span2 max-width-799-span4">
+                    <div class="row-fluid"><div class="span5">
+                            <div class="muted">Beds</div>
+                            <select id="mapsearch-criteria-minbeds" name="Criteria/MinBedrooms" class="input-block-level"><option value="">Any</option>
+                                <option value="1">1+</option>
+                                <option value="2">2+</option>
+                                <option value="3">3+</option>
+                                <option value="4">4+</option>
+                                <option value="5">5+</option>
+                                <option value="6">6+</option>
+                                <option value="7">7+</option>
+                                <option value="8">8+</option>
+                                <option value="9">9+</option>
+                                <option value="10">10+</option>
+                                <option value="11">11+</option>
+                                <option value="12">12+</option>
+                            </select>
+                        </div>
+                        <div class="span2"></div>
+                        <div class="span5"><div class="muted">Baths</div>
+                            <select id="mapsearch-criteria-minbaths" name="Criteria/MinBathrooms" class="input-block-level"><option value="">Any</option>
+                                <option value="1">1+</option>
+                                <option value="2">2+</option>
+                                <option value="3">3+</option>
+                                <option value="4">4+</option>
+                                <option value="5">5+</option>
+                                <option value="6">6+</option>
+                                <option value="7">7+</option>
+                                <option value="8">8+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3 max-width-799-span4"><div class="row-fluid r-button-bar"><div class="span6">
+                            <button class="btn r-more-button btn-block" data-toggle="tooltip" data-original-title="Redefine your search by adding filters">More options<span class="r-badge-counter">4</span></button>
+                        </div>
+                        <div class="span6"><button class="btn btn-primary btn-block">Search&nbsp;<i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="Criteria/FilterByAddress" value="1">
+            <!-- Refine search overlay -->
+            <div class="r-options-modal"><div class="search-criteria-refiners-header">
+					<button class="close">Close<span class="fa fa-times"></span></button>
+					<h5><span class="mapsearch-count-total">9524 properties displayed</span> with the following checked options</h5>
+					<!-- Search Criteria Summary -->
+					<div id="r-search-criteria-summary-container" class="row-fluid r-collapsable"><div class="r-criteria-summary-container span12 max-width-799-span6"><div id="criteria-location-summary"><ul><li class="enabled-criteria"><input type="checkbox" class="r-criteria-enabled" fieldname="Criteria/Status" fieldval="1" fieldtext="Active" fieldid="mapsearch-criteria-status-active" checked="">Active<div title="Remove Active" class="remove-criteria icon-remove" fieldname="Criteria/Status" fieldval="1" fieldtext="Active" fieldid="mapsearch-criteria-status-active"></div></li><li class="enabled-criteria"><input type="checkbox" class="r-criteria-enabled" fieldname="Criteria/Status" fieldval="10" fieldtext="Back-up" fieldid="mapsearch-criteria-status-backup" checked="">Back-up<div title="Remove Back-up" class="remove-criteria icon-remove" fieldname="Criteria/Status" fieldval="10" fieldtext="Back-up" fieldid="mapsearch-criteria-status-backup"></div></li><li class="enabled-criteria"><input type="checkbox" class="r-criteria-enabled" fieldname="Criteria/Status" fieldval="6" fieldtext="Contingent" fieldid="mapsearch-criteria-status-contingent" checked="">Contingent<div title="Remove Contingent" class="remove-criteria icon-remove" fieldname="Criteria/Status" fieldval="6" fieldtext="Contingent" fieldid="mapsearch-criteria-status-contingent"></div></li><li class="enabled-criteria"><input type="checkbox" class="r-criteria-enabled" fieldname="Criteria/Status" fieldval="5" fieldtext="Pending" fieldid="mapsearch-criteria-status-pending" checked="">Pending<div title="Remove Pending" class="remove-criteria icon-remove" fieldname="Criteria/Status" fieldval="5" fieldtext="Pending" fieldid="mapsearch-criteria-status-pending"></div></li></ul></div>
+							<button class="btn btn-link btn-refiner-criteria-clear-all">Clear All</button>
+						</div>
+					</div>
+				</div>
+<div class="row-fluid">
+    <div class="span12"><div class="row-fluid margin-bottom">
+            <div class="span4">
+                <input type="hidden" id="mapsearch-criteria-subdivisiontype" rel="mapsearch-criteria-subdivision" name="Criteria/NeighborhoodType" value="">
+                <label for="mapsearch-criteria-subdivision" class="r-rs-label">Subdivision</label>
+                <input type="text" class="input-block-level location ac_input" id="mapsearch-criteria-subdivision" locationtype="Subdivision" name="Criteria/Neighborhood" value="" autocomplete="off">
+            </div>
+            <div class="span4">
+                <input type="hidden" id="mapsearch-criteria-schooltype" rel="mapsearch-criteria-school" name="Criteria/SchoolType">
+                <label for="mapsearch-criteria-school" class="r-rs-label">School District or School</label>
+                <input type="text" class="input-block-level location ac_input" id="mapsearch-criteria-school" locationtype="School District,High School,Middle School,Elementary School" name="Criteria/School" value="" autocomplete="off">
+            </div>
+            <div class="span3"><label for="mapsearch-criteria-mingarage" class="r-rs-label">Garage</label>
+                <select id="mapsearch-criteria-mingarage" name="HardCodedCriterion" class="input-block-level" data-search-format-name="HardCodedCriterion" data-search-format-format="Garage: {HardCodedCriterion}"><option value="">Any</option>
+                    <option value="1019">1+</option>
+                    <option value="72">2+</option>
+                    <option value="71">3+</option>
+                    <option value="1022">4+</option>
+                </select>
+            </div>
+        </div>
+        <div class="row-fluid  margin-bottom"><div class="span4 r-listing-type-container">
+                <label for="mapsearch-criteria-propertytype" class="r-rs-label">Property Type</label>
+                <div>
+                    <select id="ListingType" onchange="Search.toggleListingType(this);" class="input-block-level" name="Criteria/ListingTypeID"><option value="1" selected="selected">Residential</option>
+                        <option value="3">Land</option>
+                        <option value="4">Multi Family</option>
+                        <!--<option value="5" eval_selected="EQUALS({{Widget.System.Value Type='Form.Criteria/ListingTypeID'}},'5')">Rentals</option>-->
+                        					 
+                    </select>
+                </div>
+                <div><div id="propertyType_0" class="">
+						<div id="propertyType_res"><div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000000000002">Single Family
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000000000004,1_0x000000000000001000000000">Condo
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000000000008,1_0x000000000000001000000000">Townhome
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000001000000">Patio/Villa
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000010000000000,1_0x000000000000000000000010">Half Duplex
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000000080000,1_0x000000000000008000000000">Mobile Home
+							</div>
+<div class="checkbox"><input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x040000000000000000000000"> Co-Op</div>
+							<div class="checkbox"><input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="1_0x000000000000000010000000">Other
+							</div>
+						</div>
+					</div>
+						
+					<div id="propertyType_1" class="" style="display:none;">
+						<div id="propertyType_land" class=""><div class="checkbox"><input type="checkbox" name="Criteria/PropertyTypeID_X" value="">Land
+							</div>
+						</div>
+					</div>
+					<div id="propertyType_2" class="" style="display:none;"><div id="propertyType_multi" class=""><div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="4_0x000000000000004000000000">Apartment Building
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="4_0x000000000000000000000010">Duplex
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="4_0x000000000000000000008000">Triplex
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="4_0x000000000000000000010000">Fourplex
+							</div>
+							<div class="checkbox"><input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="4_0x000000000000000010000000">Other
+							</div>
+						</div>
+					</div>
+					
+					<!--<div id="propertyType_3" class="" style="display:none;">
+						<div id="propertyType_rent" class="">
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="5_0x000000000000000000000002" eval_checked="CONTAINS({{Widget.System.Value Type='Form.Criteria/ListingTypePropertyTypeID'}}, '5_0x000000000000000000000002')" />Single Family
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="5_0x000000000000000000000004" eval_checked="CONTAINS({{Widget.System.Value Type='Form.Criteria/ListingTypePropertyTypeID'}}, '5_0x000000000000000000000004')" />Condo
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="5_0x000000000000000000000008" eval_checked="CONTAINS({{Widget.System.Value Type='Form.Criteria/ListingTypePropertyTypeID'}}, '5_0x000000000000000000000008')" />Townhouse
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="5_0x000000000000080000000000" eval_checked="CONTAINS({{Widget.System.Value Type='Form.Criteria/ListingTypePropertyTypeID'}}, '5_0x000000000000080000000000')" />Loft
+							</div>
+							<div class="checkbox">
+								<input type="checkbox" name="Criteria/ListingTypePropertyTypeID" value="5_0x000000000000000000020000" eval_checked="CONTAINS({{Widget.System.Value Type='Form.Criteria/ListingTypePropertyTypeID'}}, '5_0x000000000000000000020000')" />Apartment
+							</div>
+						</div>
+					</div>-->
+						
+					
+                </div>
+            </div>
+            <div class="span4">
+            	<div class="r-rs-label">Specialty Types</div>
+                <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-other-newc" name="Groups/Group_OSF" value="1776"><label for="mapsearch-criteria-other-newc">New Construction</label></div>
+                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-other-hwp" name="Groups/Group_OSF" value="1898"><label for="mapsearch-criteria-other-hwp">Home Warranty Plus</label></div>
+                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-other-fore" name="Groups/Group_OSF" value="1966"><label for="mapsearch-criteria-other-fore">Foreclosure/Lender Owned</label></div>
+                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-other-wfp" name="Groups/Group_OSF" value="193"><label for="mapsearch-criteria-other-wfp">Waterfront Property</label></div>
+                        <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-other-any" name="Groups/Group_OSF" value="1" checked="checked"><label for="mapsearch-feature-other-any">Any</label>
+                            <input type="radio" id="mapsearch-feature-other-all" name="Groups/Group_OSF" value="0"><label for="mapsearch-feature-other-all">All</label>
+                        </div>
+            </div>
+            <div class="span4"><div class=" margin-bottom">
+                    <div class="r-rs-label">Status</div>
+                    <div class="row-fluid less-high">
+                        <div class="span6 checkbox">
+                            <input type="checkbox" id="mapsearch-criteria-status-active" name="Criteria/Status" value="1" checked="checked"><label for="mapsearch-criteria-status-active">Active</label>
+                        </div>
+                        <div class="span6 checkbox"><input type="checkbox" id="mapsearch-criteria-status-backup" name="Criteria/Status" value="10" checked="checked"><label for="mapsearch-criteria-status-backup">Back-up</label>
+                        </div>
+                    </div>
+                    <div class="row-fluid less-high">
+                        <div class="span6 checkbox">
+                            <input type="checkbox" id="mapsearch-criteria-status-contingent" name="Criteria/Status" value="6" checked="checked"><label for="mapsearch-criteria-status-contingent">Contingent</label>
+                        </div>
+                        <div class="span6 checkbox"><input type="checkbox" id="mapsearch-criteria-status-pending" name="Criteria/Status" value="5" checked="checked"><label for="mapsearch-criteria-status-pending">Pending</label>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                    </div>
+                </div>
+                <div class="row-fluid   margin-bottom">
+                    <div id="r-openhouse-criteria-container" class="checkbox">
+                        <input type="checkbox" id="OpenHouses" name="HardCodedCriterion" value="349" onclick="toggleOpenHouseRange();Search.onChangeSubmit(this,'');">
+                        <label for="mapsearch-criteria-vtour" class="r-rs-label">Open Houses Only</label>
+                    </div>
+                    <div class="row-fluid"><div class="span5">
+                            <input type="text" name="Criteria/OpenHouseStartDtm" id="OpenHouseStartDtm" class="input-block-level hasDatepicker" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" onchange="Search.onChangeSubmit(this,'mmddyyyy')" disabled="" value="">
+                        </div>
+                        <div class="span1 r-spacer r-spacer2">
+                            To
+                        </div>
+                        <div class="span5"><input type="text" name="Criteria/OpenHouseStopDtm" id="OpenHouseStopDtm" class="input-block-level hasDatepicker" onfocus="this.select();lcs(this)" onclick="event.cancelBubble=true;this.select();lcs(this)" onchange="Search.onChangeSubmit(this,'mmddyyyy')" disabled="" value="">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="mapsearch-criteria-newlist" name="HardCodedCriterion" value="366">
+                    <label for="mapsearch-criteria-newlist">New Listings Only</label>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-pricechange" name="HardCodedCriterion" value="702">
+                    <label for="mapsearch-criteria-pricechange">Price Change Only</label>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+                <div style="clear:both"></div>
+                <hr>
+                <div class="wide toggleadvanced">
+                    <a>Even More Options</a>
+                    <span class="arrow arrow-left"></span>
+                    <span class="fa fa-caret-up r-toggle-asc r-toggleadvanced"></span>
+                    <span class="fa fa-caret-down r-toggle-desc r-toggleadvanced"></span>
+                </div>
+                <div id="mapsearch-criteria-advancedsearch" class="advanced">
+                  
+
+
+
+
+
+<ul class="nav nav-tabs" role="tablist"><li class="active"><a href="#general" role="tab" data-toggle="tab">General</a></li>
+    <li><a href="#features" role="tab" data-toggle="tab">Features</a></li>
+    <li><a href="#style" role="tab" data-toggle="tab">Style of Home</a></li>
+    <li><a href="#community" role="tab" data-toggle="tab">Community Features</a></li>
+     
+</ul>
+<div class="tab-content"><div class="tab-pane active" id="general">
+    <div class="row-fluid"><div class="span12"><div class="row-fluid"><div class="span4">
+                    <div class="margin-bottom">
+                        <label for="mapsearch-criteria-minyearbuilt" class="r-rs-label">Built Between</label>
+                        <div class="row-fluid"><div class="span5">
+                                <select id="mapsearch-criteria-minyearbuilt" name="Criteria/MinYearBuilt" class="narrow"><option value="">No Pref.</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1990">1990</option>
+                                    <option value="1985">1985</option>
+                                    <option value="1980">1980</option>
+                                    <option value="1975">1975</option>
+                                    <option value="1970">1970</option>
+                                    <option value="1960">1960</option>
+                                    <option value="1950">1950</option>
+                                    <option value="1940">1940</option>
+                                    <option value="1930">1930</option>
+                                    <option value="1920">1920</option>
+                                    <option value="1910">1910</option>
+                                    <option value="1900">1900</option>
+                                    <option value="1800">1800</option>
+                                </select>
+                            </div>
+                            <div class="span1 r-spacer r-spacer2">
+                                To
+                            </div>
+                            <div class="span5"><select id="mapsearch-criteria-maxyearbuilt" name="Criteria/MaxYearBuilt" class="narrow"><option value="">No Pref.</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1990">1990</option>
+                                    <option value="1985">1985</option>
+                                    <option value="1980">1980</option>
+                                    <option value="1975">1975</option>
+                                    <option value="1970">1970</option>
+                                    <option value="1960">1960</option>
+                                    <option value="1950">1950</option>
+                                    <option value="1940">1940</option>
+                                    <option value="1930">1930</option>
+                                    <option value="1920">1920</option>
+                                    <option value="1910">1910</option>
+                                    <option value="1900">1900</option>
+                                    <option value="1800">1800</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margin-bottom"><label for="mapsearch-criteria-minacreage" class="r-rs-label">Lot Size</label>
+                        <div class="row-fluid"><div class="span5">
+                                <select class="narrow" id="mapsearch-criteria-minacreage" name="Criteria/MinAcreage"><option value="" selected="selected">Any</option>
+                                    <option value="2000">2,000 sq ft</option>
+                                    <option value="4000">4,000 sq ft</option>
+                                    <option value="6000">6,000 sq ft</option>
+                                    <option value="8000">8,000 sq ft</option>
+                                    <option value="10890">10,890 sq ft / 0.25 acres</option>
+                                    <option value="21780">21,780 sq ft / 0.5 acres</option>
+                                    <option value="43560">1 acre</option>
+                                    <option value="87120">2 acres</option>
+                                    <option value="130680">3 acres</option>
+                                    <option value="174240">4 acres</option>
+                                    <option value="217800">5 acres</option>
+                                    <option value="435600">10 acres</option>
+                                    <option value="653400">15 acres</option>
+                                    <option value="871200">20 acres</option>
+                                    <option value="1089000">25 acres</option>
+                                    <option value="2178000">50 acres</option>
+                                    <option value="4356000">100 acres</option>
+                                </select>
+                            </div>
+                            <div class="span1 r-spacer r-spacer2">
+                                To
+                            </div>
+                            <div class="span5"><select class="narrow" id="mapsearch-criteria-maxacreage" name="Criteria/MaxAcreage"><option value="" selected="selected">Any</option>
+                                    <option value="2000">2,000 sq ft</option>
+                                    <option value="4000">4,000 sq ft</option>
+                                    <option value="6000">6,000 sq ft</option>
+                                    <option value="8000">8,000 sq ft</option>
+                                    <option value="10890">10,890 sq ft / 0.25 acres</option>
+                                    <option value="21780">21,780 sq ft / 0.5 acres</option>
+                                    <option value="43560">1 acre</option>
+                                    <option value="87120">2 acres</option>
+                                    <option value="130680">3 acres</option>
+                                    <option value="174240">4 acres</option>
+                                    <option value="217800">5 acres</option>
+                                    <option value="435600">10 acres</option>
+                                    <option value="653400">15 acres</option>
+                                    <option value="871200">20 acres</option>
+                                    <option value="1089000">25 acres</option>
+                                    <option value="2178000">50 acres</option>
+                                    <option value="4356000">100 acres</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="margin-bottom">
+                        <label for="mapsearch-criteria-minsqft" class="r-rs-label">Square Feet</label>
+                        <div class="row-fluid"><div class="span5">
+                                <input type="text" class="input-block-level numeric ac_input" id="mapsearch-criteria-minsqft" name="Criteria/SquareFootage" value="" autocomplete="off">
+                            </div>
+                            <div class="span1 r-spacer r-spacer2">
+                                To
+                            </div>
+                            <div class="span5"><input type="text" class="input-block-level numeric ac_input" id="mapsearch-criteria-maxsqft" name="Criteria/MaxSquareFootage" value="" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margin-bottom"><label for="mapsearch-criteria-remarks" class="r-rs-label">Remarks Keyword Search</label>
+                        <input type="text" class="input-block-level" id="mapsearch-criteria-remarks" name="Criteria/PublicRemarks" value="">
+                        <div class=" micro-help-text">Example: Spa, Pool, Upgrade</div>
+                    </div>
+                </div>
+                <div class="span4" style="padding-left:10px;"><label for="mapsearch-criteria-other" class="r-rs-label">Other Options</label>
+                            <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-rnonly" name="HardCodedCriterion" value="1736"><label for="mapsearch-criteria-rnonly">ReeceNichols Listings Only</label></div>
+                            <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-photoonly" name="HardCodedCriterion" value="1745"><label for="mapsearch-criteria-photoonly">Show Only Listings with Photos</label></div>
+                            
+                            
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="tab-pane" id="features">
+    <div class="row-fluid"><div class="span8">
+            <label for="mapsearch-criteria-interior" class="r-rs-label">Interior Features</label>
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-base" name="Groups/Group_INTERIOR" value="65"><label for="mapsearch-criteria-interior-base">Basement</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-finbase" name="Groups/Group_INTERIOR" value="66"><label for="mapsearch-criteria-interior-finbase">Finished Basement</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-walkoutbase" name="Groups/Group_INTERIOR" value="361"><label for="mapsearch-criteria-interior-walkoutbase">Walkout Basement</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-master" name="Groups/Group_INTERIOR" value="573"><label for="mapsearch-criteria-interior-master">First Floor Master Bedroom</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-handimod" name="Groups/Group_INTERIOR" value="132"><label for="mapsearch-criteria-interior-handimod">Handicapped Modified</label></div>
+                </div>
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-cair" name="Groups/Group_INTERIOR" value="52"><label for="mapsearch-criteria-interior-cair">Central Air</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-den" name="Groups/Group_INTERIOR" value="62"><label for="mapsearch-criteria-interior-den">Den/Study</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-fam" name="Groups/Group_INTERIOR" value="56"><label for="mapsearch-criteria-interior-fam">Family Room</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-fire" name="Groups/Group_INTERIOR" value="60"><label for="mapsearch-criteria-interior-fire">Fireplace</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-dining" name="Groups/Group_INTERIOR" value="1179"><label for="mapsearch-criteria-interior-dining">Formal Dining Room</label></div>
+                </div>
+                <div class="span4"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-wood" name="Groups/Group_INTERIOR" value="3183"><label for="mapsearch-criteria-interior-wood">Hardwood Floors</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-laun" name="Groups/Group_INTERIOR" value="64"><label for="mapsearch-criteria-interior-laun">Laundry Room</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-rec" name="Groups/Group_INTERIOR" value="61"><label for="mapsearch-criteria-interior-rec">Recreation Room</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-interior-secsys" name="Groups/Group_INTERIOR" value="133"><label for="mapsearch-criteria-interior-secsys">Security System</label></div>
+                </div>
+            </div>
+            <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-interior-any" name="Groups/Group_INTERIOR" value="1" checked="checked"><label for="mapsearch-feature-interior-any">Any</label>
+                <input type="radio" id="mapsearch-feature-interior-all" name="Groups/Group_INTERIOR" value="0"><label for="mapsearch-feature-interior-all">All</label>
+            </div>
+        </div>
+        <div class="span4"><label for="mapsearch-criteria-exterior" class="r-rs-label">Exterior Features</label>
+            <div class="row-fluid">
+                <div class="span6">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-brick" name="Groups/Group_EXF" value="939"><label for="mapsearch-criteria-exterior-brick">Brick</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-stucco" name="Groups/Group_EXF" value="138"><label for="mapsearch-criteria-exterior-stucco">Stucco Siding</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-vinyl" name="Groups/Group_EXF" value="139"><label for="mapsearch-criteria-exterior-vinyl">Vinyl Siding</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-frame" name="Groups/Group_EXF" value="211"><label for="mapsearch-criteria-exterior-frame">Frame</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-pool" name="Groups/Group_EXF" value="67"><label for="mapsearch-criteria-exterior-pool">Swimming Pool</label></div>
+                </div>
+                <div class="span6"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-tennis" name="Groups/Group_EXF" value="77"><label for="mapsearch-criteria-exterior-tennis">Tennis Court</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-exterior-log" name="Groups/Group_EXF" value="212"><label for="mapsearch-criteria-exterior-log">Log</label></div>
+                </div>
+            </div>
+            <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-exterior-any" name="Groups/Group_EXF" value="1" checked="checked"><label for="mapsearch-feature-exterior-any">Any</label>
+                <input type="radio" id="mapsearch-feature-exterior-all" name="Groups/Group_EXF" value="0"><label for="mapsearch-feature-exterior-all">All</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="style">
+    <div class="row-fluid"><div class="span6">
+            <label for="mapsearch-criteria-soh" class="r-rs-label">Floor Plan</label>
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-15st" name="Groups/Group_SOH" value="128"><label for="mapsearch-criteria-soh-15st">1.5 Stories</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-2st" name="Groups/Group_SOH" value="129"><label for="mapsearch-criteria-soh-2st">2 Stories</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-3st" name="Groups/Group_SOH" value="350"><label for="mapsearch-criteria-soh-3st">3 Stories</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-atrium" name="Groups/Group_SOH" value="3750"><label for="mapsearch-criteria-atrium">Atrium Split</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-bun" name="Groups/Group_SOH" value="10"><label for="mapsearch-criteria-soh-bun">Bungalow</label></div>          
+                </div>
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-casplit" name="Groups/Group_SOH" value="3751"><label for="mapsearch-criteria-soh-casplit">California Split</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-earth" name="Groups/Group_SOH" value="3752"><label for="mapsearch-criteria-soh-earth">Earth Contact</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-fbsplit" name="Groups/Group_SOH" value="1955"><label for="mapsearch-criteria-soh-fbsplit">Front/Back Split</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-raised15" name="Groups/Group_SOH" value="3753"><label for="mapsearch-criteria-soh-raised15">Raised 1.5 Story</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-ranch" name="Groups/Group_SOH" value="9"><label for="mapsearch-criteria-soh-ranch">Ranch</label></div>          
+                </div>
+                <div class="span4"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-reverse15" name="Groups/Group_SOH" value="1958"><label for="mapsearch-criteria-soh-reverse15">Reverse 1.5 Story</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-raisedranch" name="Groups/Group_SOH" value="179"><label for="mapsearch-criteria-soh-raisedranch">Raised Ranch</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-sideside" name="Groups/Group_SOH" value="1960"><label for="mapsearch-criteria-soh-sideside">Side-by-Side Split</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-splitentry" name="Groups/Group_SOH" value="13"><label for="mapsearch-criteria-soh-splitentry">Split Entry</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-trilevel" name="Groups/Group_SOH" value="3755"><label for="mapsearch-criteria-soh-trilevel">Tri-Level</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-soh-other" name="Groups/Group_SOH" value="3756"><label for="mapsearch-criteria-soh-other">Other</label></div>            
+                </div>
+            </div>
+            <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-soh-any" name="Groups/Group_SOH" value="1" checked="checked"><label for="mapsearch-feature-soh-any">Any</label>
+                <input type="radio" id="mapsearch-feature-soh-all" name="Groups/Group_SOH" value="0"><label for="mapsearch-feature-soh-all">All</label>
+            </div>
+        </div>
+        <div class="span6"><label for="mapsearch-criteria-arch" class="r-rs-label">Architecture</label>
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-aframe" name="Groups/Group_ARC" value="34"><label for="mapsearch-criteria-arc-aframe">A-Frame</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-ant" name="Groups/Group_ARC" value="1959"><label for="mapsearch-criteria-arc-ant">Antebellum</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-cape" name="Groups/Group_ARC" value="19"><label for="mapsearch-criteria-arc-cape">Cape Cod</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-col" name="Groups/Group_ARC" value="22"><label for="mapsearch-criteria-arc-col">Colonial</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-cont" name="Groups/Group_ARC" value="11"><label for="mapsearch-criteria-arc-cont">Contemporary</label></div>
+                </div>
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-french" name="Groups/Group_ARC" value="1961"><label for="mapsearch-criteria-arc-french">French</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-spanish" name="Groups/Group_ARC" value="16"><label for="mapsearch-criteria-arc-spanish">Spanish</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-trad" name="Groups/Group_ARC" value="29"><label for="mapsearch-criteria-arc-trad">Traditional</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-tudor" name="Groups/Group_ARC" value="30"><label for="mapsearch-criteria-arc-tudor">Tudor</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-vic" name="Groups/Group_ARC" value="31"><label for="mapsearch-criteria-arc-vic">Victorian</label></div>
+                </div>
+                <div class="span4"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-arc-other" name="Groups/Group_ARC" value="51"><label for="mapsearch-criteria-arc-other">Other</label></div>
+                </div>
+            </div>
+            <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-arc-any" name="Groups/Group_ARC" value="1" checked="checked"><label for="mapsearch-feature-arc-any">Any</label>
+                <input type="radio" id="mapsearch-feature-arc-all" name="Groups/Group_ARC" value="0"><label for="mapsearch-feature-arc-all">All</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane" id="community">
+            <label for="mapsearch-criteria-interior" class="r-rs-label">Community Amenities</label>
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-child" name="Groups/Group_COMMUAMEN" value="358"><label for="mapsearch-criteria-community-child">Childrens Play Area</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-storage" name="Groups/Group_COMMUAMEN" value="359"><label for="mapsearch-criteria-community-storage">Extra Storage</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-exercise" name="Groups/Group_COMMUAMEN" value="101"><label for="mapsearch-criteria-community-exercise">Exercise Area</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-rec" name="Groups/Group_COMMUAMEN" value="94"><label for="mapsearch-criteria-community-rec">Recreation Facilities</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-sauna" name="Groups/Group_COMMUAMEN" value="99"><label for="mapsearch-criteria-community-sauna">Sauna</label></div>
+                </div>
+                <div class="span4"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-pool" name="Groups/Group_COMMUAMEN" value="97"><label for="mapsearch-criteria-community-pool">Swimming Pool</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-tennis" name="Groups/Group_COMMUAMEN" value="96"><label for="mapsearch-criteria-community-tennis">Tennis</label></div>
+                    <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-community-golf" name="Groups/Group_COMMUAMEN" value="800"><label for="mapsearch-criteria-community-golf">Golf Facilities</label></div>                               
+                </div>                
+            </div>
+            <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-feature-community-any" name="Groups/Group_COMMUAMEN" value="1" checked="checked"><label for="mapsearch-feature-community-any">Any</label>
+                <input type="radio" id="mapsearch-feature-community-all" name="Groups/Group_COMMUAMEN" value="0"><label for="mapsearch-feature-community-all">All</label>
+            </div>
+        </div>
+ <div class="tab-pane" id="agent" style="display:none;"><div class="row-fluid"><div class="span8"><div class="row-fluid" style="padding: 10px; border-radius: 4px; background:#f4f2f3; border: 1px solid #e9e4e6;"><div class="span2">
+                                <label for="mapsearch-criteria-mls" class="r-rs-label">MLS Area*</label>
+                                <div id="mls-area-list-container"><div id="mls-area-list-content"><input type="radio" id="mapsearch-mls-area-any" name="Groups/Group_MLS_Area" value="1" checked="checked" style="display: none;">
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-101" name="Groups/Group_MLS_Area" value="3600"><label for="mapsearch-criteria-mls-area-101">101</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-102" name="Groups/Group_MLS_Area" value="3601"><label for="mapsearch-criteria-mls-area-102">102</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-103" name="Groups/Group_MLS_Area" value="3602"><label for="mapsearch-criteria-mls-area-103">103</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-104" name="Groups/Group_MLS_Area" value="3603"><label for="mapsearch-criteria-mls-area-104">104</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-105" name="Groups/Group_MLS_Area" value="3604"><label for="mapsearch-criteria-mls-area-105">105</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-106" name="Groups/Group_MLS_Area" value="3605"><label for="mapsearch-criteria-mls-area-106">106</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-107" name="Groups/Group_MLS_Area" value="3606"><label for="mapsearch-criteria-mls-area-107">107</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-108" name="Groups/Group_MLS_Area" value="3607"><label for="mapsearch-criteria-mls-area-108">108</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-109" name="Groups/Group_MLS_Area" value="3608"><label for="mapsearch-criteria-mls-area-109">109</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-110" name="Groups/Group_MLS_Area" value="3609"><label for="mapsearch-criteria-mls-area-110">110</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-111" name="Groups/Group_MLS_Area" value="3610"><label for="mapsearch-criteria-mls-area-111">111</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-112" name="Groups/Group_MLS_Area" value="3611"><label for="mapsearch-criteria-mls-area-112">112</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-113" name="Groups/Group_MLS_Area" value="3612"><label for="mapsearch-criteria-mls-area-113">113</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-114" name="Groups/Group_MLS_Area" value="3613"><label for="mapsearch-criteria-mls-area-114">114</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-115" name="Groups/Group_MLS_Area" value="3614"><label for="mapsearch-criteria-mls-area-115">115</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-202" name="Groups/Group_MLS_Area" value="3615"><label for="mapsearch-criteria-mls-area-202">202</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-203" name="Groups/Group_MLS_Area" value="3616"><label for="mapsearch-criteria-mls-area-203">203</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-204" name="Groups/Group_MLS_Area" value="3617"><label for="mapsearch-criteria-mls-area-204">204</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-205" name="Groups/Group_MLS_Area" value="3618"><label for="mapsearch-criteria-mls-area-205">205</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-206" name="Groups/Group_MLS_Area" value="3619"><label for="mapsearch-criteria-mls-area-206">206</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-207" name="Groups/Group_MLS_Area" value="3620"><label for="mapsearch-criteria-mls-area-207">207</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-208" name="Groups/Group_MLS_Area" value="3621"><label for="mapsearch-criteria-mls-area-208">208</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-210" name="Groups/Group_MLS_Area" value="3622"><label for="mapsearch-criteria-mls-area-210">210</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-220" name="Groups/Group_MLS_Area" value="3623"><label for="mapsearch-criteria-mls-area-220">220</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-221" name="Groups/Group_MLS_Area" value="3624"><label for="mapsearch-criteria-mls-area-221">221</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-222" name="Groups/Group_MLS_Area" value="3625"><label for="mapsearch-criteria-mls-area-222">222</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-223" name="Groups/Group_MLS_Area" value="3626"><label for="mapsearch-criteria-mls-area-223">223</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-224" name="Groups/Group_MLS_Area" value="3627"><label for="mapsearch-criteria-mls-area-224">224</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-230" name="Groups/Group_MLS_Area" value="3628"><label for="mapsearch-criteria-mls-area-230">230</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-310" name="Groups/Group_MLS_Area" value="3629"><label for="mapsearch-criteria-mls-area-310">310</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-315" name="Groups/Group_MLS_Area" value="3630"><label for="mapsearch-criteria-mls-area-315">315</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-320" name="Groups/Group_MLS_Area" value="3631"><label for="mapsearch-criteria-mls-area-320">320</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-325" name="Groups/Group_MLS_Area" value="3632"><label for="mapsearch-criteria-mls-area-325">325</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-330" name="Groups/Group_MLS_Area" value="3633"><label for="mapsearch-criteria-mls-area-330">330</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-335" name="Groups/Group_MLS_Area" value="3634"><label for="mapsearch-criteria-mls-area-335">335</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-340" name="Groups/Group_MLS_Area" value="3635"><label for="mapsearch-criteria-mls-area-340">340</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-345" name="Groups/Group_MLS_Area" value="3636"><label for="mapsearch-criteria-mls-area-345">345</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-350" name="Groups/Group_MLS_Area" value="3637"><label for="mapsearch-criteria-mls-area-350">350</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-355" name="Groups/Group_MLS_Area" value="3638"><label for="mapsearch-criteria-mls-area-355">355</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-360" name="Groups/Group_MLS_Area" value="3639"><label for="mapsearch-criteria-mls-area-360">360</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-370" name="Groups/Group_MLS_Area" value="3640"><label for="mapsearch-criteria-mls-area-370">370</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-380" name="Groups/Group_MLS_Area" value="3641"><label for="mapsearch-criteria-mls-area-380">380</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-385" name="Groups/Group_MLS_Area" value="3642"><label for="mapsearch-criteria-mls-area-385">385</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-390" name="Groups/Group_MLS_Area" value="3643"><label for="mapsearch-criteria-mls-area-390">390</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-401" name="Groups/Group_MLS_Area" value="3644"><label for="mapsearch-criteria-mls-area-401">401</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-403" name="Groups/Group_MLS_Area" value="3645"><label for="mapsearch-criteria-mls-area-403">403</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-405" name="Groups/Group_MLS_Area" value="3646"><label for="mapsearch-criteria-mls-area-405">405</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-407" name="Groups/Group_MLS_Area" value="3647"><label for="mapsearch-criteria-mls-area-407">407</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-409" name="Groups/Group_MLS_Area" value="3648"><label for="mapsearch-criteria-mls-area-409">409</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-411" name="Groups/Group_MLS_Area" value="3649"><label for="mapsearch-criteria-mls-area-411">411</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-413" name="Groups/Group_MLS_Area" value="3650"><label for="mapsearch-criteria-mls-area-413">413</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-415" name="Groups/Group_MLS_Area" value="3651"><label for="mapsearch-criteria-mls-area-415">415</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-417" name="Groups/Group_MLS_Area" value="3652"><label for="mapsearch-criteria-mls-area-417">417</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-419" name="Groups/Group_MLS_Area" value="3653"><label for="mapsearch-criteria-mls-area-419">419</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-421" name="Groups/Group_MLS_Area" value="3654"><label for="mapsearch-criteria-mls-area-421">421</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-423" name="Groups/Group_MLS_Area" value="3655"><label for="mapsearch-criteria-mls-area-423">423</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-425" name="Groups/Group_MLS_Area" value="3656"><label for="mapsearch-criteria-mls-area-425">425</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-427" name="Groups/Group_MLS_Area" value="3657"><label for="mapsearch-criteria-mls-area-427">427</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-440" name="Groups/Group_MLS_Area" value="3658"><label for="mapsearch-criteria-mls-area-440">440</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-450" name="Groups/Group_MLS_Area" value="3659"><label for="mapsearch-criteria-mls-area-450">450</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-997" name="Groups/Group_MLS_Area" value="3660"><label for="mapsearch-criteria-mls-area-997">997</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-998" name="Groups/Group_MLS_Area" value="3661"><label for="mapsearch-criteria-mls-area-998">998</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-mls-area-999" name="Groups/Group_MLS_Area" value="3662"><label for="mapsearch-criteria-mls-area-999">999</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span10">
+                                <label for="mapsearch-criteria-lake" class="r-rs-label">Lake Description</label>
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-bh" name="Groups/Group_Lake_Description" value="3663"><label for="mapsearch-criteria-lake-description-bh">Boathouse</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-prd" name="Groups/Group_Lake_Description" value="3664"><label for="mapsearch-criteria-lake-description-prd">Private Dock(s)</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-pud" name="Groups/Group_Lake_Description" value="3665"><label for="mapsearch-criteria-lake-description-pud">Public Dock/Use</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-la" name="Groups/Group_Lake_Description" value="3666"><label for="mapsearch-criteria-lake-description-la">Lake Access</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-lf" name="Groups/Group_Lake_Description" value="3667"><label for="mapsearch-criteria-lake-description-lf">Lake Front</label></div>
+                                    </div>
+                                    <div class="span4">
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-lp" name="Groups/Group_Lake_Description" value="3668"><label for="mapsearch-criteria-lake-description-lp">Lake Privileges</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-lr" name="Groups/Group_Lake_Description" value="3669"><label for="mapsearch-criteria-lake-description-lr">Lake Restrictions</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-1stlt" name="Groups/Group_Lake_Description" value="3670"><label for="mapsearch-criteria-lake-description-1stlt">First Lake Tier</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-2ndlt" name="Groups/Group_Lake_Description" value="3671"><label for="mapsearch-criteria-lake-description-2ndlt">Second Lake Tier</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-3rdlt" name="Groups/Group_Lake_Description" value="3672"><label for="mapsearch-criteria-lake-description-3rdlt">Third Lake Tier</label></div>
+                                    </div>
+                                    <div class="span4"><div class="checkbox"><input type="checkbox" id="mapsearch-criteria-lake-description-4thlt" name="Groups/Group_Lake_Description" value="3673"><label for="mapsearch-criteria-lake-description-4thlt">Fourth Lake Tier</label></div>
+                                    </div>
+                                </div>
+                                <div class="checkbox checkbox-match">Match:<input type="radio" id="mapsearch-criteria-lake-description-any" name="Groups/Group_Lake_Description" value="1" checked="checked"><label for="mapsearch-criteria-lake-description-any">Any</label>
+                                    <input type="radio" id="mapsearch-criteria-lake-description-all" name="Groups/Group_Lake_Description" value="0"><label for="mapsearch-criteria-lake-description-all">All</label>
+                                </div>
+                            </div>
+<div style="padding-top: 10px; float: left; clear: both; width: 45%; font-style: italic; font-size: 11px;">*We're sorry, but Listing Alerts will not currently work with searches setup using MLS Areas. Please turn off Listing Alerts for your client when using MLS Areas.</div>
+<div style="clear: both; padding-top: 10px; width: 50%; float: right; text-align: right;font-style:italic;">These fields are available for Heartland MLS only.</div>
+</div>
+
+</div>
+                            <!--<div class="span4" style="padding-left:10px;">
+                                <label for="mapsearch-criteria-other" class="r-rs-label">Other Options</label>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-agentonly" name="HardCodedCriterion" value="1807" eval_checked="CONTAINS({{Widget.System.Value Type='Form.HardCodedCriterion'}},'1807')" /><label for="mapsearch-criteria-agentonly">Agent's Listings Only</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-rnonly" name="HardCodedCriterion" value="1736" eval_checked="CONTAINS({{Widget.System.Value Type='Form.HardCodedCriterion'}},'1736')" /><label for="mapsearch-criteria-rnonly">ReeceNichols Listings Only</label></div>
+                                        <div class="checkbox"><input type="checkbox" id="mapsearch-criteria-photoonly" name="HardCodedCriterion" value="1745" eval_checked="CONTAINS({{Widget.System.Value Type='Form.HardCodedCriterion'}},'1745')" /><label for="mapsearch-criteria-photoonly">Show Only Listings with Photos</label></div>
+                       
+                            </div>-->
+                        </div>
+                    </div>
+
+</div>
+
+
+
+
+
+                    <hr>
+                </div>
+                <div>
+                    <div class="pull-right"><button class="btn btn-default" tabindex="0" data-ms-button-clear="">
+                            Clear ALL Options
+                        </button>
+                        <button class="btn btn-primary" tabindex="0" title="Search" data-ms-button-submit="">Update Search</button>
+                    </div>
+                </div>
+                <div class="clearfloats"></div>
+            </div>
+        <input type="hidden" name="Criteria/LocationJson" value="[]"></div>
+</div>
+
+<p>City to search</p> <p><input type="text" ng-model="test"></p>
+<div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Four Column Portfolio
+                    <small>Subheading</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="Sample4.html">Home</a>
+                    </li>
+                    <li class="active">Four Column Portfolio</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 img-portfolio">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+<!--  
+<div class="table-responsive"></div>
+<table>
+ <tr>
+        <th>Address</th>
+        <th>City</th>
+        <th>County</th>
+        <th>Zip Code</th>        
+      </tr>
+  <tr ng-repeat="x in addrs | orderBy : 'County' | filter:test">
+    <td>{{ x.addr }}</td>
+    <td>{{ x.city }}</td>
+    <td>{{ x.county }}</td>
+    <td>{{ x.zip }}</td>
+  </tr>
+</table>
+ --> 
+  </body>
+  </html>
+
+<script >
+var app = angular.module("myBuyingList", []); 
+app.controller("myCtrl", function($scope) {
+    $scope.addrs = [
+                       {addr:"Washington Road",city:"Atlanta",county:"Atlanta",zip:"1122"},
+                       {addr:"Headland Drive",city:"Atlanta",county:"East Point",zip:"1123"},
+                       {addr:"River Valley Road",city:"Sandy Springs",county:"Sandy Springs",zip:"1129"},
+                       {addr:"Roswell St",city:"Marietta",county:"Marietta",zip:"1127"},
+                       {addr:"Westside parkway",city:"Alphaertta",county:"Alphaertta",zip:"1129"}
+                       ];
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    }
+    $scope.removeItem = function (x) {
+        $scope.products.splice(x, 1);
+    } 
+});
+</script>
